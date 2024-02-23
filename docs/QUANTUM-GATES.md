@@ -15,7 +15,7 @@ The Hadamard gate transforms the basis states ∣0⟩ and ∣1⟩ into superposi
 - Controlled Phase Shift Gate (S†): The conjugate of the S gate, it introduces a −90∘ phase shift to the ∣1⟩ state.
 
 ## Control Gates:
-- Controlled-NOT Gate (CNOT): Also known as the controlled-X gate, it flips the target qubit if the control qubit is in the ∣1⟩ state. It is a two-quibit gate that flips the second qubit if the first is in state |1>. It is an entanglement generator.Classical equivalent is XOR gate.
+- Controlled-NOT Gate (CNOT): Also known as the controlled-X gate, it flips the target qubit if the control qubit is in the ∣1⟩ state. It is a two-quibit gate that flips the second qubit if the first is in state |1>. It is an entanglement generator. Classical equivalent is XOR gate.
 - Controlled-Z Gate (CZ): Applies a phase flip to the target qubit if the control qubit is in the ∣1⟩ state.
 
 ## Other Gates:

@@ -17,6 +17,10 @@ namespace Quantum.Concepts {
         // which applies a Hadamard transformation to the qubit.
         // Then, entangle the two qubits using the `CNOT` operation.
         H(q1);
+
+        // Also known as the controlled-X gate, it flips the target qubit if the control 
+        // qubit is in the ∣1⟩ state. It is a two-quibit gate that flips the second qubit 
+        // if the first is in state |1>. It is an entanglement generator.
         // Controlled Not - (control, target)
         CNOT(q1, q2);
 
