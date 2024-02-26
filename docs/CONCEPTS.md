@@ -8,6 +8,9 @@
 
 ## Entanglement:
 - Entanglement is a phenomenon where the quantum states of two or more qubits become correlated in such a way that the state of one qubit instantaneously influences the state of the other(s), regardless of the distance between them. Entanglement is a key resource in many quantum algorithms and enables quantum computers to perform certain tasks exponentially faster than classical computers.
+- Entanglement of two qubits occurs when the state of one qubit is dependent on the state of the other, even when they are physically separated. This dependency persists regardless of the distance between the qubits and is a hallmark feature of quantum mechanics.
+- One common way to entangle qubits is through a process called controlled-NOT (CNOT) gate operation. In this operation, one qubit (the control qubit) controls the operation of another qubit (the target qubit). If the control qubit is in the state |1⟩, the target qubit's state is flipped. When the control qubit is in a superposition state (like in a Bell state), it entangles the target qubit with it.
+- Another method is to start with a pair of qubits in a Bell state, such as the maximally entangled state (|00⟩ + |11⟩)/√2 or (|00⟩ - |11⟩)/√2. This state ensures that the measurement outcomes of one qubit are correlated with the measurement outcomes of the other qubit, thus demonstrating entanglement.
 
 ## Quantum Gates:
 - Quantum gates are the building blocks of quantum circuits and operations that manipulate qubits. Just as classical logic gates (e.g., AND, OR, NOT) perform logical operations on classical bits, quantum gates perform unitary transformations on qubits.

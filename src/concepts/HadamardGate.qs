@@ -1,5 +1,6 @@
 namespace Quantum.Concepts{
 
+    open Microsoft.Quantum.Diagnostics;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Canon;
 
@@ -10,10 +11,12 @@ namespace Quantum.Concepts{
 
         // First H operation turns it into superposition
         H(q1);
-
+        DumpMachine();
+        
         // Applying another H gate in succession results in the qubit returned to its original state
         // Effectively superpositon is created and removed
         H(q1);
+        DumpMachine();
 
         // Measuring the state of the superposition will collapse it
         let result = M(q1);

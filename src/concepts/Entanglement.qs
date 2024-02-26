@@ -19,9 +19,8 @@ namespace Quantum.Concepts {
         H(q1);
 
         // Also known as the controlled-X gate, it flips the target qubit if the control 
-        // qubit is in the ∣1⟩ state. It is a two-quibit gate that flips the second qubit 
+        // qubit is in the ∣1⟩ state. It is a two-qubit gate that flips the second qubit 
         // if the first is in state |1>. It is an entanglement generator.
-        // Controlled Not - (control, target)
         CNOT(q1, q2);
 
         // Show the entangled state using the `DumpMachine` function.

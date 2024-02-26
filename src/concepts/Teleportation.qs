@@ -1,5 +1,6 @@
 namespace Quantum.Concepts {
 
+    open Microsoft.Quantum.Diagnostics;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Canon;
 
@@ -11,7 +12,7 @@ namespace Quantum.Concepts {
         let message = register[0];
 
         if(sentMessage) {
-            // FLip the qubit
+            // FLip the qubit to |1> state
             X(message)
         }
 
@@ -24,7 +25,7 @@ namespace Quantum.Concepts {
         H(alice);
         CNOT(alice, bob);
 
-        // We want to teleport the message Qubit to Bob, 
+        // We want to teleport the message Qubit to Bob by entangling it with alice
         CNOT(message, alice);
         H(message);
 
@@ -94,6 +95,7 @@ namespace Quantum.Concepts {
         for _ in 0..1000 {
             // Get a random message to be sent
             let sentMessage = GetRandom();
+            
             // Invoke the quantum teleportation operation
             let messageReceieved = Teleportation(sentMessage);
 
