@@ -8,7 +8,7 @@
 - The operation is defined with the attributes Adj + Ctl, indicating that it has an adjoint operation and can be controlled by other qubits.
 
 3. Operation Body:
-- Inside the body of the operation, the built-in function __quantum__qis__h__body is called to apply the Hadamard gate to the input qubit. This function performs the actual operation of applying the Hadamard gate to the qubit.
+- Inside the body of the operation, the built-in function `__quantum__qis__h__body` is called to apply the Hadamard gate to the input qubit. This function performs the actual operation of applying the Hadamard gate to the qubit.
 
 4. Controlled Operation:
 - The operation is defined as controlled by one or more control qubits (ctls).
@@ -20,6 +20,8 @@
 
 5. Adjoint Operation:
 - The adjoint self; statement specifies that the operation has an adjoint operation defined. The adjoint operation performs the reverse operation of the original operation, allowing for reversible computation.
+- The adjoint of an operation `𝑈` is essentially its inverse, often denoted as 
+`𝑈†`. Applying an operation and then its adjoint will bring the qubit back to its original state, i.e., `𝑈† 𝑈 = 𝐼` where 𝐼 is the identity operation.
 
 In summary, an operation H that applies the Hadamard gate to a qubit, with support for controlled operations and an adjoint operation. The operation includes logic to handle different numbers of control qubits, enabling controlled versions of the Hadamard gate with varying degrees of control.
 
@@ -49,6 +51,23 @@ The CH gate behaves as follows:
 In simple terms, the CH gate flips the target qubit's state if and only if the control qubit is |1⟩. If the control qubit is |0⟩, the target qubit remains unchanged.
 
 Controlled gates like CH gates are essential building blocks in quantum circuits and algorithms, allowing for conditional operations based on the state of one or more control qubits. They play a crucial role in implementing various quantum algorithms, including quantum error correction, quantum teleportation, and quantum computation.
+
+example:
+```qsharp
+operation PrepareMinus(q: Qubit): Unit
+is Adj + Ctl {
+    X(q);
+    H(q);
+}
+```
+
+This operation takes a qubit in the |0⟩ state, applies the Pauli-X gate (which flips the state to |1⟩), and then applies the Hadamard gate (which puts it into the |-⟩ state).
+
+The Controlled keyword in Q# allows an operation to be applied conditionally based on the state of control qubits. The syntax Controlled PrepareMinus(ctrls, q) means that the PrepareMinus operation will be applied to the qubit q only if the control qubits ctrls are in the |1⟩ state.
+
+Breaking Down the Step
+- Control Qubits (ctrls): This is an array of qubits that act as the control qubits.
+- Target Qubit (q): This is the qubit on which the PrepareMinus operation will be applied if the control qubits are in the |1⟩ state.
 
 ### Controlled-controlled Hadamard gate
 A controlled-controlled Hadamard gate, often denoted as CCH gate, is a multi-qubit quantum gate that combines the properties of the Hadamard gate (H gate) with control functionality applied to two or more control qubits. It applies the Hadamard gate to a target qubit only if all specified control qubits are in a specific state.
