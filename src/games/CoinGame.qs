@@ -5,19 +5,21 @@ namespace Quantum.Sample {
     open Microsoft.Quantum.Intrinsic;
 
     @EntryPoint()
-    operation Main():Unit {
+    operation Main():String {
+        //
+        mutable winner = "";
 
-        mutable player1Wins = 0;
+        // Execute the quantum operation
+        let result = QuantumCoinGame();
 
-        for i in 1..1000 {
-            let result = QuantumCoinGame();
-            if(result == One) {
-                set player1Wins = player1Wins +1;
-            }
+        // Inspect the result
+        if(result == One) {
+            set winner = "Player 1";
+        } else {
+            set winner = "Player 2";
         }
 
-        Message($"Player 1: {player1Wins} wins");
-        Message($"Player 2: {1000 - player1Wins} wins");
+        return (winner);
     }
 
     operation QuantumCoinGame(): Result {

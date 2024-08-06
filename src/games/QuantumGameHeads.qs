@@ -15,11 +15,9 @@ namespace QuantumGame {
         CNOT(playerQubit, ancillaQubit);
 
         // Apply a sequence of quantum gates to implement the quantum strategy
-        // In this strategy, we'll apply an X gate to both qubits
-        H(playerQubit);
-        Z(playerQubit);
-        H(ancillaQubit);
-        Z(ancillaQubit);
+        // In this strategy, we'll apply an X and Y to create randomness in the outcome
+        X(playerQubit);
+        Y(playerQubit);
 
         // Measure both qubits to determine the outcome of the game
         let playerResult = MResetZ(playerQubit);
@@ -27,6 +25,5 @@ namespace QuantumGame {
 
         // Return the measurement results of both qubits
         return (playerResult, ancillaResult);
-
     }
 }

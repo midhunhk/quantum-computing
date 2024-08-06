@@ -11,25 +11,28 @@ namespace Quantum.Concepts {
     @EntryPoint()
     operation EntangleQubits() : (Result, Result) {
         // Allocate the two qubits that will be entangled.
-        use (q1, q2) = (Qubit(), Qubit());
+        use (qAlice, qBob) = (Qubit(), Qubit());
+        DumpMachine();
 
         // Set the first qubit in superposition by calling the `H` operation, 
         // which applies a Hadamard transformation to the qubit.
         // Then, entangle the two qubits using the `CNOT` operation.
-        H(q1);
+        H(qAlice);
 
         // Also known as the controlled-X gate, it flips the target qubit if the control 
         // qubit is in the ∣1⟩ state. It is a two-qubit gate that flips the second qubit 
         // if the first is in state |1>. It is an entanglement generator.
-        CNOT(q1, q2);
+        CNOT(qAlice, qBob);
 
         // Show the entangled state using the `DumpMachine` function.
         DumpMachine();
 
         // Measurements of entangled qubits are always correlated.
-        let (m1, m2) = (M(q1), M(q2));
-        Reset(q1);
-        Reset(q2);
+        let (m1, m2) = (M(qAlice), M(qBob));
+        
+        Reset(qAlice);
+        Reset(qBob);
+
         return (m1, m2);
     }
 }

@@ -7,12 +7,13 @@ namespace Quantum.Concepts {
     operation Teleportation(sentMessage: Bool) : Bool {
         mutable messageReceived = false;
 
+        // An array of three qubits allocated, representing the message qubit, Alice's qubit, and Bob's qubit.
         use register = Qubit[3];
-
         let message = register[0];
 
+        // The first qubit is set to the state |1⟩ if sentMessage is true, otherwise it remains in the state |0⟩.
         if(sentMessage) {
-            // FLip the qubit to |1> state
+            // Flip the qubit to |1> state
             X(message)
         }
 
@@ -23,9 +24,11 @@ namespace Quantum.Concepts {
         // their states are entangled. Any changes made to one qubit will instantaneously 
         // affect the other qubit, regardless of the distance between them.
         H(alice);
+        // CNOT gate is applied with alice as the control and bob as the target, creating an entangled state between them.
         CNOT(alice, bob);
 
         // We want to teleport the message Qubit to Bob by entangling it with alice
+        // The message qubit is entangled with Alice's qubit using a CNOT gate.
         CNOT(message, alice);
         H(message);
 
@@ -87,30 +90,14 @@ namespace Quantum.Concepts {
     }
 
     @EntryPoint()
-    operation Main() : Unit{
-        mutable trues = 0;
-        mutable equal = 0;
+    operation Main() : Bool{
+        // Get a random message to be sent
+        let sentMessage = GetRandom();
+        
+        // Invoke the quantum teleportation operation
+        let messageReceieved = Teleportation(sentMessage);
 
-        // Run this test for 1000 times
-        for _ in 0..1000 {
-            // Get a random message to be sent
-            let sentMessage = GetRandom();
-            
-            // Invoke the quantum teleportation operation
-            let messageReceieved = Teleportation(sentMessage);
-
-            if(messageReceieved) {
-                set trues = trues + 1;
-            }
-
-            if(messageReceieved == sentMessage){
-                set equal = equal + 1;
-            }
-        }
-
-        Message($"  True: {trues}");
-        Message($" False: {1000 - trues}");
-        Message($" Equal: {equal / 1000 * 100 } %");
+        return (messageReceieved);
     }
 
     operation GetRandom():Bool {

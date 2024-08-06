@@ -7,12 +7,12 @@ namespace Quantum.Concepts {
     open Microsoft.Quantum.Convert;
 
     @EntryPoint()
-    operation Main():Unit {
+    operation Main():Int {
         let max = 100;
 
         let randomNumber = GenerateRandomNumberInRange(max);
 
-        Message($"Random Qubit Value: {randomNumber}");
+        return(randomNumber);
     }
 
     operation GenerateRandomNumberInRange(max : Int) : Int {

@@ -6,11 +6,7 @@ namespace Quantum.Concepts {
     open Microsoft.Quantum.Diagnostics;
 
     @EntryPoint()
-    operation Main(): Unit {
-        PrepareSuperposition()
-    }
-
-    operation PrepareSuperposition() : Unit {
+    operation PrepareSuperposition() : (Result, Result, Result) {
         use qubits = Qubit[3];
 
         // Check the basis state of the qubits
@@ -27,14 +23,18 @@ namespace Quantum.Concepts {
         // Measure the qubits
         Measure([PauliZ, PauliZ, PauliZ], qubits);
 
+        mutable results = [Zero, Zero, Zero];
         for index in 0..2 {
-            let result = M(qubits[index]);
+            set results w/= index <- M(qubits[index]);
             // Output the measurement results
-            Message($"Results[{index}] = {result}");
+            Message($"Results[{index}] = {results[index]}");
         }
 
         // Reset qubits to |0⟩ state before releasing them
-        ResetAll(qubits);  
+        ResetAll(qubits);
+
+        // Return the measurement results as a tuple
+        return (results[0], results[1], results[2]);
     }
 
 }
